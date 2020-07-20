@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>bg_tiles</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            user-select: none;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            display: table-cell;
+            height: 100vh;
+            width: 100vw;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        // settings
+        let core = {
+            fadeIn: true,
+            width: document.body.clientWidth,
+            height: document.body.clientHeight,
+            tileSize: null,
+            tileShift: 0.2,
+            fps: 50
+        };
+        // set tile size
+        //for (let i = 1; i < Math.min(core.width, core.height); i++) {
+        //    if (core.width % i == 0 && core.height % i == 0) core.tileSize = i;
+        //}
+        //if (core.tileSize < Math.ceil(Math.max(core.width, core.height) / 20)) {
+        //    core.tileSize = Math.ceil(Math.max(core.width, core.height) / 10);
+        //}
+        core.tileSize = Math.ceil(Math.max(core.width, core.height) / 10);
+        // set tiles
+        let tiles = [];
+        let rows = Math.ceil(core.height / core.tileSize);
+        let cols = Math.ceil(core.width / core.tileSize);
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                tiles.push({
+                    x: c * core.tileSize,
+                    y: r * core.tileSize,
+                    opacity: 0
+                });
+            }
+        }
+        console.log('rows: ' + rows);
+        console.log('cols: ' + cols);
+        // set lines
+        let lines = {};
+        let linesCount = rows + cols - 1;
+        for (let l = 0; l < linesCount; l++) {
+            lines[l] = [];
+        }
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                lines[(r + c)].push({
+                    x: c * core.tileSize,
+                    y: r * core.tileSize,
+                    opacity: 0
+                });
+            }
+        }
+        console.log(lines);
+        // set canvas
+        let cnv = document.querySelector('canvas');
+        cnv.width = core.width;
+        cnv.height = core.height;
+        var ctx = cnv.getContext('2d');
+        // draw bg
+        ctx.fillStyle = 'whitesmoke';
+        ctx.fillRect(0, 0, core.width, core.height);
+        // render
+        let render = setInterval(function () {
+            let dt = new Date();
+            let ts =
+                (dt.getHours().toString().length < 2 ? '0' + dt.getHours().toString() : dt.getHours().toString()) + ':' +
+                (dt.getMinutes().toString().length < 2 ? '0' + dt.getMinutes().toString() : dt.getMinutes().toString()) + ':' +
+                (dt.getSeconds().toString().length < 2 ? '0' + dt.getSeconds().toString() : dt.getSeconds().toString());
+            //console.log(ts);
+            // clear field
+            ctx.fillStyle = 'whitesmoke';
+            ctx.fillRect(0, 0, core.width, core.height);
+            // update lines
+            for (let l = 0; l < Object.keys(lines).length; l++) {
+                //console.log(Object.keys(lines).length);
+                if (core.fadeIn) {
+                    if (lines[l][0].opacity < 1.0) {
+                        for (let t = 0; t < lines[l].length; t++) {
+                            lines[l][t].opacity += core.tileShift;
+                        }
+                        break;
+                    }
+                    else {
+                        for (let t = 0; t < lines[l].length; t++) {
+                            lines[l][t].opacity = 1.0;
+                        }
+                    }
+                    if (lines[Object.keys(lines).length - 1][0].opacity == 1.0) {
+                        core.fadeIn = false;
+                    }
+                }
+                else {
+                    if (lines[l][0].opacity > 0.0) {
+                        for (let t = 0; t < lines[l].length; t++) {
+                            lines[l][t].opacity -= core.tileShift;
+                        }
+                        break;
+                    }
+                    else {
+                        for (let t = 0; t < lines[l].length; t++) {
+                            lines[l][t].opacity = 0.0;
+                        }
+                    }
+                    if (lines[Object.keys(lines).length - 1][0].opacity == 0.0) {
+                        core.fadeIn = true;
+                    }
+                }
+            }
+            // update tiles
+            //for (let t = 0; t < tiles.length; t++) {
+            //    if (core.fadeIn) {
+            //        if (tiles[t].opacity < 1.0) {
+            //            tiles[t].opacity += core.tileShift;
+            //            break;
+            //        }
+            //        else {
+            //            tiles[t].opacity = 1.0;
+            //        }
+            //        if (tiles[tiles.length - 1].opacity == 1.0) {
+            //            core.fadeIn = false;
+            //        }
+            //    }
+            //    else {
+            //        if (tiles[t].opacity > 0.0) {
+            //            tiles[t].opacity -= core.tileShift;
+            //            break;
+            //        }
+            //        else {
+            //            tiles[t].opacity = 0.0;
+            //        }
+            //        if (tiles[tiles.length - 1].opacity == 0.0) {
+            //            core.fadeIn = true;
+            //        }
+            //    }
+            //}
+            // draw tiles
+            //for (let t = 0; t < tiles.length; t++) {
+            //    ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+            //    ctx.fillRect(tiles[t].x, tiles[t].y, core.tileSize, core.tileSize);
+            //}
+            for (let l = 0; l < Object.keys(lines).length; l++) {
+                for (let t = 0; t < lines[l].length; t++) {
+                    ctx.fillStyle = 'rgba(50, 50, 50, ' + lines[l][t].opacity + ')';
+                    ctx.fillRect(lines[l][t].x, lines[l][t].y, core.tileSize, core.tileSize);
+                }
+            }
+        }, 1000 / core.fps);
+    </script>
+</body>
+</html>
