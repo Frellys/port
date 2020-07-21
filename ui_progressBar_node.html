@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ui_progressBar_node</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            user-select: none;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: whitesmoke;
+            display: table-cell;
+            height: 100vh;
+            width: 100vw;
+            vertical-align: middle;
+        }
+
+        #pWrap {
+            width: fit-content;
+            display: block;
+            /*position: absolute;
+            bottom: 1vmin;*/
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            border-radius: 1vmin;
+        }
+
+            #pWrap progress {
+                -webkit-appearance: none;
+            }
+
+                #pWrap progress::-webkit-progress-bar {
+                    background-color: whitesmoke;
+                    border: 2px solid #323232;
+                    border-radius: 1vmin;
+                }
+
+                #pWrap progress::-webkit-progress-value {
+                    border-radius: 0.5vmin 0 0 0.5vmin;
+                    background-color: #323232;
+                }
+    </style>
+</head>
+<body>
+    <div id="pWrap">
+        <progress></progress>
+    </div>
+    <script>
+        // settings
+        let core = {
+            fps: 50,
+            progress: {
+                max: 100,
+                value: 0,
+                width: '15vw',
+                height: '2vmin'
+            }
+        };
+        // apply settings
+        let progress = document.querySelector('progress');
+        progress.max = core.progress.max;
+        progress.value = core.progress.value;
+        progress.style.width = core.progress.width;
+        progress.style.height = core.progress.height;
+        // render
+        let interval = setInterval(function () {
+            if (progress.value < 100) {
+                progress.value += 1;
+            }
+            else {
+                //clearInterval(interval);
+                progress.value = 0;
+            }
+        }, 1000 / core.fps);
+    </script>
+</body>
+</html>
