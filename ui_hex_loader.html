@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            user-select: none;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: gray;
+            display: table-cell;
+            height: 100vh;
+            width: 100vw;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        // settings
+        let core = {
+            fadeIn: true,
+            width: document.body.clientWidth,
+            height: document.body.clientHeight,
+            fps: 50,
+            mouse: {
+                posX: 0,
+                posY: 0
+            },
+            tile: {
+                size: Math.min(document.body.clientWidth, document.body.clientHeight) / 10,
+                height: Math.min(document.body.clientWidth, document.body.clientHeight) / 10 * (Math.sqrt(3) / 2)
+            }
+        };
+        // tiles
+        let tiles = [
+            {
+                posX: core.width / 2,
+                posY: core.height / 2,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2,
+                posY: core.height / 2 - core.tile.height * 2 - 4,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2 + core.tile.size * 1.5 + 4,
+                posY: core.height / 2 - core.tile.height - 2,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2 + core.tile.size * 1.5 + 4,
+                posY: core.height / 2 + core.tile.height + 2,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2,
+                posY: core.height / 2 + core.tile.height * 2 + 4,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2 - core.tile.size * 1.5 - 4,
+                posY: core.height / 2 + core.tile.height + 2,
+                opacity: 0.0
+            },
+            {
+                posX: core.width / 2 - core.tile.size * 1.5 - 4,
+                posY: core.height / 2 - core.tile.height - 2,
+                opacity: 0.0
+            }
+        ];
+        // add mouse pos listener
+        window.addEventListener('mousemove', function (e) {
+            core.mouse.posX = e.clientX;
+            core.mouse.posY = e.clientY;
+        }, false);
+        // set canvas
+        let cnv = document.querySelector('canvas');
+        cnv.width = core.width;
+        cnv.height = core.height;
+        let ctx = cnv.getContext('2d');
+        // render
+        let render = setInterval(function () {
+            // draw bg
+            ctx.fillStyle = 'whitesmoke';
+            ctx.fillRect(0, 0, core.width, core.height);
+            // draw tiles
+            for (let t = 0; t < tiles.length; t++) {
+                let tx = tiles[t].posX;
+                let ty = tiles[t].posY;
+                ctx.beginPath();
+                ctx.moveTo(tx - core.tile.size / 2, ty - core.tile.height);
+                ctx.lineTo(tx + core.tile.size / 2, ty - core.tile.height);
+                ctx.lineTo(tx + core.tile.size, ty);
+                ctx.lineTo(tx + core.tile.size / 2, ty + core.tile.height);
+                ctx.lineTo(tx - core.tile.size / 2, ty + core.tile.height);
+                ctx.lineTo(tx - core.tile.size, ty);
+                ctx.closePath();
+                ctx.strokeStyle = '#323232';
+                ctx.lineWidth = 1;
+                //if (ctx.isPointInPath(core.mouse.posX, core.mouse.posY)) {
+                //    ctx.strokeStyle = 'red';
+                //    ctx.lineWidth = 2;
+                //}
+                ctx.stroke();
+                if (core.fadeIn) {
+                    if (t != 0) {
+                        if (tiles[t - 1].opacity == 1.0) {
+                            if (tiles[t].opacity < 1.0) {
+                                tiles[t].opacity += 0.1;
+                            }
+                            else {
+                                tiles[t].opacity = 1.0;
+                            }
+                            //ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                        }
+                        ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                    }
+                    else {
+                        if (tiles[t].opacity < 1.0) {
+                            tiles[t].opacity += 0.1;
+                        }
+                        else {
+                            tiles[t].opacity = 1.0;
+                        }
+                        ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                    }
+                    if (tiles[tiles.length - 1].opacity == 1.0) {
+                        core.fadeIn = false;
+                    }
+                }
+                else {
+                    if (t != 0) {
+                        if (tiles[t - 1].opacity == 0.0) {
+                            if (tiles[t].opacity > 0.0) {
+                                tiles[t].opacity -= 0.1;
+                            }
+                            else {
+                                tiles[t].opacity = 0.0;
+                            }
+                            //ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                        }
+                        ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                    }
+                    else {
+                        if (tiles[t].opacity > 0.0) {
+                            tiles[t].opacity -= 0.1;
+                        }
+                        else {
+                            tiles[t].opacity = 0.0;
+                        }
+                        ctx.fillStyle = 'rgba(50, 50, 50, ' + tiles[t].opacity + ')';
+                    }
+                    if (tiles[tiles.length - 1].opacity == 0.0) {
+                        core.fadeIn = true;
+                    }
+                }
+                ctx.fill();
+            }
+        }, 1000 / core.fps);
+    </script>
+</body>
+</html>
