@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            user-select: none;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: gray;
+            display: table-cell;
+            height: 100vh;
+            width: 100vw;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <button id="start">Start Recording</button>
+    <button id="stop">Stop Recording</button>
+    <video id="video" autoplay></video>
+    <script>
+        let start = document.getElementById('start');
+        let stop = document.getElementById('stop');
+        let video = document.getElementById('video');
+        let recorder;
+        let stream = null;
+        start.addEventListener('click', function () {
+            navigator.mediaDevices.getDisplayMedia({
+                video: true,
+                audio: false
+            }).then(function (stream) {
+                //recorder = new MediaRecorder(stream, {
+                //    mimeType: 'video/x-matroska;codecs=avc1'
+                //});
+                recorder = new MediaRecorder(stream);
+                let chunks = [];
+                recorder.start();
+                recorder.ondataavailable = e => chunks.push(e.data);
+                recorder.onstop = e => {
+                    stream.getVideoTracks()[0].stop();
+                    //chunks.push(e.data);
+                    //const completeBlob = new Blob(chunks, { type: chunks[0].type });
+                    const completeBlob = new Blob(chunks, { type: 'application/mp4' });
+                    //console.log(completeBlob);
+                    let url = URL.createObjectURL(completeBlob);
+                    video.type = "video/mp4";
+                    video.src = url;
+                    video.load();
+                    let tempLink = document.createElement('a');
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.href = url;
+                    tempLink.download = 'test' + '.mp4';
+                    tempLink.click();
+                    // lega
+                    stream.getVideoTracks().forEach(function (track) { track.stop(); });
+                    window.URL.revokeObjectURL(url);
+                    //stream.getVideoTracks()[0].stop();
+                }
+            });
+        }, false);
+        stop.addEventListener('click', () => {
+            stop.setAttribute('disabled', true);
+            start.removeAttribute('disabled');
+            recorder.stop();
+            //stream.getVideoTracks()[0].stop();
+        });
+    </script>
+</body>
+</html>
