@@ -44,7 +44,7 @@
                 recorder.start();
                 recorder.ondataavailable = e => chunks.push(e.data);
                 recorder.onstop = e => {
-                    stream.getVideoTracks()[0].stop();
+                    //stream.getVideoTracks()[0].stop();
                     //chunks.push(e.data);
                     //const completeBlob = new Blob(chunks, { type: chunks[0].type });
                     const completeBlob = new Blob(chunks, { type: 'application/mp4' });
@@ -60,7 +60,7 @@
                     tempLink.download = 'test' + '.mp4';
                     tempLink.click();
                     // lega
-                    stream.getVideoTracks().forEach(function (track) { track.stop(); });
+                    //stream.getVideoTracks().forEach(function (track) { track.stop(); });
                     window.URL.revokeObjectURL(url);
                     //stream.getVideoTracks()[0].stop();
                 }
