@@ -7,4 +7,4 @@ and some code that I'm not ashamed to show
 - [js-info](https://frellys.github.io/port/js-info.html "basic javascript browserData extraction")
 - [screenCapture](https://frellys.github.io/port/screenCapture.html)
 - [toBase64](https://frellys.github.io/port/toBase64.html)
-- [toBraille](https://frellys.github.io/port/toBraille.html)
+- [toBraille](https://frellys.github.io/port/toBraille.html "rus/eng translator into Braille")
