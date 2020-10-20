@@ -8,10 +8,12 @@
  * @return {boolean}
  */
 var isValidSudoku = function (board) {
+    let ret = true;
     // check rows
     board.forEach(function (row) {
-        if (!containsUniqueValues(row)) return false;
+        if (!containsUniqueValues(row)) ret = false;
     });
+    if (!ret) return false;
     // check cols
     let cols = [];
     for (let r = 0; r < board.length; r++) {
@@ -22,25 +24,42 @@ var isValidSudoku = function (board) {
         cols.push(curCol);
     }
     cols.forEach(function (col) {
-        if (!containsUniqueValues(col)) return false;
+        if (!containsUniqueValues(col)) ret = false;
     });
-    return true;
+    if (!ret) return false;
+    // check boxes
+    let boxes = [];
+    for (let r = 0; r < 9; r += 3) {
+        for (let c = 0; c < 9; c += 3) {
+            boxes.push([
+                board[r + 0][c + 0], board[r + 0][c + 1], board[r + 0][c + 2],
+                board[r + 1][c + 0], board[r + 1][c + 1], board[r + 1][c + 2],
+                board[r + 2][c + 0], board[r + 2][c + 1], board[r + 2][c + 2]
+            ]);
+        }
+    }
+    boxes.forEach(function (box) {
+        if (!containsUniqueValues(box)) ret = false;
+    });
+    // return if all checks passed
+    return ret;
     /**
      * @param {string[]} arr
      * @return {boolean}
      */
     function containsUniqueValues(arr) {
         let els = [];
+        let res = true;
         arr.forEach(function (elem) {
-            if (elem != '') {
+            if (elem != '.') {
                 if (els.includes(elem)) {
-                    return false;
+                    res = false;
                 }
                 else {
                     els.push(elem);
                 }
             }
         });
-        return true;
+        return res;
     }
 };
