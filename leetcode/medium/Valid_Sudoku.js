@@ -12,6 +12,23 @@ var isValidSudoku = function (board) {
     board.forEach(function (row) {
         if (!containsUniqueValues(row)) return false;
     });
+    // check cols
+    let cols = [];
+    for (let r = 0; r < board.length; r++) {
+        let curCol = [];
+        for (let c = 0; c < board[r].length; c++) {
+            curCol.push(board[c][r]);
+        }
+        cols.push(curCol);
+    }
+    cols.forEach(function (col) {
+        if (!containsUniqueValues(col)) return false;
+    });
+    return true;
+    /**
+     * @param {string[]} arr
+     * @return {boolean}
+     */
     function containsUniqueValues(arr) {
         let els = [];
         arr.forEach(function (elem) {
