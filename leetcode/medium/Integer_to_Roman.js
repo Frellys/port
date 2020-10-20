@@ -16,6 +16,21 @@ var intToRoman = function (num) {
                 diff = 'I';
                 break;
             }
+            case 1: {
+                base = (el > 5) ? 'C' : 'L';
+                diff = 'X';
+                break;
+            }
+            case 2: {
+                base = (el > 5) ? 'M' : 'D';
+                diff = 'C';
+                break;
+            }
+            //case 3: {
+            //    base = (el > 5) ? 'M' : 'D';
+            //    diff = 'C';
+            //    break;
+            //}
             default: {
                 break;
             }
