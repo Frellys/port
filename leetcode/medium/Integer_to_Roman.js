@@ -6,5 +6,7 @@
  * @return {string}
  */
 var intToRoman = function (num) {
-
+    let res = '';
+    num.toString().split('').forEach(function (el, idx, arr) {
+    });
 };
