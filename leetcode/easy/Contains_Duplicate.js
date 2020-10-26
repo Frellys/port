@@ -17,7 +17,7 @@ var containsDuplicate = function (nums) {
             break;
         }
         else {
-
+            seen.push(nums[i]);
         }
     }
     return flag;
