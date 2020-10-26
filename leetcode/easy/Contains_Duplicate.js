@@ -6,6 +6,7 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-    return nums.some(function (el) {
+    return nums.some(function (el, idx, arr) {
+        return arr.indexOf(el) !== arr.lastIndexOf(el);
     });
 };
