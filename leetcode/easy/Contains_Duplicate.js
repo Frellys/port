@@ -6,7 +6,19 @@
  * @return {boolean}
  */
 var containsDuplicate = function (nums) {
-    return nums.some(function (el, idx, arr) {
-        return arr.indexOf(el) !== arr.lastIndexOf(el);
-    });
+    //return nums.some(function (el, idx, arr) {
+    //    return arr.indexOf(el) !== arr.lastIndexOf(el);
+    //});
+    let seen = [];
+    let flag = false;
+    for (let i = 0; i < nums.length; i++) {
+        if (seen.includes(nums[i])) {
+            flag = true;
+            break;
+        }
+        else {
+
+        }
+    }
+    return flag;
 };
