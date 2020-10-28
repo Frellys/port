@@ -15,5 +15,5 @@ var countSegments = function (s) {
             i--;
         }
     }
-    return ret;
+    return ret.length;
 };
