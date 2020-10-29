@@ -7,5 +7,14 @@
  * @return {boolean}
  */
 var checkPerfectNumber = function (num) {
-
+    if (num == 1) return false;
+    let cur = 1;
+    let arr = [];
+    while (cur <= num / 2) {
+        if (num % cur == 0) arr.push(cur);
+        cur++;
+    }
+    let sum = 0;
+    arr.forEach(function (el) { sum += el; });
+    return (sum == num) ? true : false;
 };
