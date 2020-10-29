@@ -10,7 +10,6 @@ var repeatedSubstringPattern = function (s) {
     if (s.length < 2) return false;
     for (let i = 0; i < s.length / 2; i++) {
         sep += s[i].toString();
-        //let temp = s.split('');
         let flag = true;
         s.split(sep).forEach(function (el) {
             if (el != '') flag = false;
