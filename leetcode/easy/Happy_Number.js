@@ -12,9 +12,8 @@
 var isHappy = function (n) {
     let seen = [];
     while (true) {
-        let cur = n.toString().split('');
         let res = 0;
-        cur.forEach(function (el) {
+        n.toString().split('').forEach(function (el) {
             res += Math.pow(parseInt(el), 2);
         });
         if (seen.includes(res)) {
