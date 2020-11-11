@@ -24,6 +24,5 @@ var maxProduct = function (words) {
             }
         }
     }
-    console.log(max);
     return max;
 };
