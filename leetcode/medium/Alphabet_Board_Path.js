@@ -46,18 +46,22 @@ var alphabetBoardPath = function (target) {
         else {
             while (pos.x != charpos.x) {
                 if (pos.x > charpos.x) {
-                    while (pos.x != charpos.x) { pos.x--; ret += 'L'; }
+                    pos.x--;
+                    ret += 'L';
                 }
                 else {
-                    while (pos.x != charpos.x) { pos.x++; ret += 'R'; }
+                    pos.x++;
+                    ret += 'R';
                 }
             }
             while (pos.y != charpos.y) {
                 if (pos.y > charpos.y) {
-                    while (pos.y != charpos.y) { pos.y--; ret += 'U'; }
+                    pos.y--;
+                    ret += 'U';
                 }
                 else {
-                    while (pos.y != charpos.y) { pos.y++; ret += 'D'; }
+                    pos.y++;
+                    ret += 'D';
                 }
             }
             ret += '!';
