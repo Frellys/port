@@ -21,4 +21,5 @@ var getDecimalValue = function (head) {
         if (node.next) traverse(node.next);
     }
     traverse(head);
+    return parseInt(binStr, 2);
 };
