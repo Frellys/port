@@ -15,7 +15,7 @@
 var robotSim = function (commands, obstacles) {
     let max = 0;
     if (commands.length) {
-        let obs = obstacles.map(function (el) { return (el[0] + ',' + (-el[1])); });
+        let obs = obstacles.map(function (el) { return el.join(','); });
         obs = Array.from(new Set(obs));
         let dir = ['t', 'r', 'b', 'l'];
         let pos = { x: 0, y: 0 };
@@ -36,9 +36,9 @@ var robotSim = function (commands, obstacles) {
                         y: pos.y
                     };
                     switch (dir[0]) {
-                        case 't': { temp.y--; break; }
+                        case 't': { temp.y++; break; }
                         case 'r': { temp.x++; break; }
-                        case 'b': { temp.y++; break; }
+                        case 'b': { temp.y--; break; }
                         case 'l': { temp.x--; break; }
                         default: { break; }
                     };
