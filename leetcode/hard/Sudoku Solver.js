@@ -27,7 +27,10 @@ var solveSudoku = function (board) {
             if (col === '.') board[rdx][cdx] = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
         });
     });
+    let cnt = 0;
     while (true) {
+        cnt++;
+        if (cnt == 10) break;
         for (let r = 0; r < 9; r++) {
             let rowValues = [];
             let colValues = [];
@@ -42,20 +45,22 @@ var solveSudoku = function (board) {
                 if (typeof board[c][r] == 'object') board[c][r] = board[c][r].filter(function (v) { return (rowValues.includes(v) == false); });
             }
             if (r % 3 == 0) {
-                for (let c = 0; c < 3; c++) {
+                for (let c = 0; c < 9; c += 3) {
                     let boxIdx = [
                         [r + 0, c + 0], [r + 0, c + 1], [r + 0, c + 2],
                         [r + 1, c + 0], [r + 1, c + 1], [r + 1, c + 2],
                         [r + 2, c + 0], [r + 2, c + 1], [r + 2, c + 2]
                     ];
-                    //let boxValues = boxIdx.reduce(function (a, p) {
-                    //    if (typeof board[p[0]][p[1]] == 'string') return board[p[0]][p[1]];
-                    //});
-                    console.log(boxIdx);
+                    let box = boxIdx.map(function (p) { return board[p[0]][p[1]]; });
+                    //console.log(box);
+                    let boxValues = boxIdx.filter(function (el) { return (typeof el == 'string'); });
+                    boxIdx.forEach(function (p) {
+                        let cell = board[p[0]][p[1]];
+                        if (typeof cell == 'object') board[p[0]][p[1]] = cell.filter(function (v) { return (boxValues.includes(v) == false); });
+                    });
                 }
             }
         }
-        break;
     };
     console.log(board);
 };
