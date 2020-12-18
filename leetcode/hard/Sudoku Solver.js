@@ -51,11 +51,15 @@ var solveSudoku = function (board) {
                         [r + 1, c + 0], [r + 1, c + 1], [r + 1, c + 2],
                         [r + 2, c + 0], [r + 2, c + 1], [r + 2, c + 2]
                     ];
-                    let box = boxIdx.map(function (p) { return board[p[0]][p[1]]; });
+                    //let box = boxIdx.map(function (p) { return board[p[0]][p[1]]; });
                     //console.log(box);
                     let boxValues = boxIdx.filter(function (el) { return (typeof el == 'string'); });
+                    boxValues.forEach(function (v) { freq[v] = (v in freq) ? freq[v] + 1 : 1; });
+                    let freq = {};
+                    let freqVals = Object.values(freq);
                     boxIdx.forEach(function (p) {
                         let cell = board[p[0]][p[1]];
+                        cell.forEach(function (v) { freq[v] = (v in freq) ? freq[v] + 1 : 1; });
                         if (typeof cell == 'object') board[p[0]][p[1]] = cell.filter(function (v) { return (boxValues.includes(v) == false); });
                     });
                 }
