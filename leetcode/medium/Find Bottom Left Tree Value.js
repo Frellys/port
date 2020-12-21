@@ -15,17 +15,17 @@
 var findBottomLeftValue = function (root) {
     let maxVal = root.val;
     let maxLvl = 0;
-    function traverse(node, level, isLeft) {
+    function traverse(node, level) {
         if (node) {
-            if (isLeft && level > maxLvl) {
+            if (level > maxLvl) {
                 maxVal = node.val;
                 maxLvl = level;
             }
             level++;
-            traverse(node.left, level, true);
-            traverse(node.right, level, true);
+            traverse(node.left, level);
+            traverse(node.right, level);
         }
     }
-    traverse(root, 0, true);
+    traverse(root, 0);
     return maxVal;
 };
