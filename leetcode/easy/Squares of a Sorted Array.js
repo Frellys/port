@@ -5,7 +5,5 @@
  * @return {number[]}
  */
 var sortedSquares = function (A) {
-    A.sort(function (a, b) { return Math.abs(a) - Math.abs(b); });
-    for (let i = 0; i < A.length; i++) A[i] = Math.pow(A[i], 2);
-    return A;
+    return A.sort(function (a, b) { return Math.abs(a) - Math.abs(b); }).map(function (n) { return Math.pow(n, 2); });
 };
