@@ -8,12 +8,8 @@
  */
 var heightChecker = function (heights) {
     let arr = heights.slice();
-    arr.sort(function (a, b) {
-        return a - b;
-    });
-    let cnt = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] != heights[i]) cnt++;
-    }
-    return cnt;
+    arr.sort((a, b) => { return (a - b); });
+    return arr.filter(function (el, i) {
+        return (el != heights[i]);
+    }).length;
 };
