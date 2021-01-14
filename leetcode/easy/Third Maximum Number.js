@@ -6,13 +6,7 @@
  * @return {number}
  */
 var thirdMax = function (nums) {
-    //let max = [];
-    //nums.forEach(function (num) {
-    //    if (!max.includes(num)) max.push(num);
-    //});
     let max = Array.from(new Set(nums));
-    max.sort(function (a, b) {
-        return a - b;
-    });
+    max.sort((a, b) => { return (a - b); });
     return (max.length >= 3) ? max[max.length - 3] : max[max.length - 1];
 };
