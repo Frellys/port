@@ -9,7 +9,8 @@
 // This allows certain emails to be filtered, for example m.y + name@email.com will be forwarded to my@email.com.
 // (Again, this rule does not apply for domain names.)
 // It is possible to use both of these rules at the same time.
-// Given a list of emails, we send one email to each address in the list.How many different addresses actually receive mails ? 
+// Given a list of emails, we send one email to each address in the list.
+// How many different addresses actually receive mails ? 
 
 /**
  * @param {string[]} emails
