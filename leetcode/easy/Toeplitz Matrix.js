@@ -7,8 +7,6 @@
  */
 var isToeplitzMatrix = function (matrix) {
     let flag = true;
-    let rows = matrix.length;
-    let cols = matrix[0].length;
     matrix.forEach(function (row, rdx) {
         if (flag && rdx > 0) {
             row.forEach(function (col, cdx) {
