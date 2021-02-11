@@ -7,21 +7,5 @@
  * @return {number[]}
  */
 var plusOne = function (digits) {
-    let pos = digits.length - 1;
-    let needInc = true;
-    while (needInc && pos >= 0) {
-        digits[pos]++;
-        if (digits[pos] == 10) {
-            digits[pos] = 0;
-            if (pos == 0) {
-                digits.unshift(1);
-                break;
-            }
-        }
-        else {
-            needInc = false;
-        }
-        pos--;
-    }
-    return digits;
+    return (BigInt(digits.join('')) + 1n).toString().split('');
 };
