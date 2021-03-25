@@ -25,5 +25,5 @@ var isLongPressedName = function (name, typed) {
             inp.push({ 'char': ch, 'cnt': 1 });
         }
     });
-    return (inp.length == arr.length) && inp.every(function (el, idx) { return arr[idx] && el['char'] == arr[idx]['char'] && inp[idx]['cnt'] >= arr[idx]['cnt']; });
+    return (inp.length == arr.length) && inp.every(function (el, idx) { return el['char'] == arr[idx]['char'] && el['cnt'] >= arr[idx]['cnt']; });
 };
