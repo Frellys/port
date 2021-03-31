@@ -17,7 +17,7 @@ var diagonalSort = function (mat) {
             rdx++;
             cdx++;
         }
-        return arr.join(',').split(',').map(function (el) { return parseInt(el); });
+        return arr;
     }
     function setArr(rdx, cdx, arr) {
         while (arr.length) {
