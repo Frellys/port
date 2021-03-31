@@ -15,7 +15,7 @@ var MyCalendar = function () {
  * @return {boolean}
  */
 MyCalendar.prototype.book = function (start, end) {
-    if (this.intervals.every(function (ival) { return (start >= ival.end || end <= ival.start) })) {
+    if (this.intervals.every(function (ival) { return (start >= ival.end || end <= ival.start); })) {
         this.intervals.push({ start: start, end: end });
         return true;
     }
