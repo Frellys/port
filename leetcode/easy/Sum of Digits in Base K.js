@@ -7,5 +7,5 @@
  * @return {number}
  */
 var sumBase = function (n, k) {
-    return n.toString(k).split('').map(n => parseInt(n)).reduce(function (a, b) { return a + b; });
+    return n.toString(k).split('').map(Number).reduce(function (a, b) { return a + b; });
 };
