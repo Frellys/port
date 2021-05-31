@@ -6,20 +6,13 @@
  * @return {number}
  */
 var majorityElement = function (nums) {
-    nums.sort(function (a, b) {
-        return a - b;
+    let seen = {};
+    nums.forEach(function (el) {
+        let key = el.toString();
+        if ((key in seen) == false) {
+            seen[key] = 0;
+        }
+        seen[key]++;
     });
-    let cur = nums[0];
-    let cnt = 1;
-    for (let i = 1; i < nums.length; i++) {
-        if (cur != nums[i]) {
-            cur = nums[i];
-            cnt = 1;
-        }
-        else {
-            cnt++;
-        }
-        if (cnt > nums.length / 2) break;
-    }
-    return cur;
+    return Number(Object.keys(seen).find(function (key) { return (seen[key] > nums.length / 2); }));
 };
