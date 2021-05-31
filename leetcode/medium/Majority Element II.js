@@ -7,16 +7,11 @@
 var majorityElement = function (nums) {
     let seen = {};
     nums.forEach(function (el) {
-        if (el.toString() in seen) {
-            seen[el.toString()] += 1;
+        let key = el.toString();
+        if ((key in seen) == false) {
+            seen[key] = 0;
         }
-        else {
-            seen[el.toString()] = 1;
-        }
+        seen[key]++;
     });
-    let ret = [];
-    Object.keys(seen).forEach(function (key) {
-        if (seen[key] > nums.length / 3) ret.push(parseInt(key));
-    });
-    return ret;
+    return Object.keys(seen).filter(function (key) { return (seen[key] > nums.length / 3); }).map(Number);
 };
