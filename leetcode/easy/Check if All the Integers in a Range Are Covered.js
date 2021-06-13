@@ -13,10 +13,6 @@
 var isCovered = function (ranges, left, right) {
     let interval = Array.from(new Array(right - left + 1), (el, edx) => (edx + left));
     let rSet = new Set();
-    ranges.forEach(function ([l, r]) {
-        while (l <= r) {
-            rSet.add(l++);
-        }
-    });
+    ranges.forEach(([l, r]) => { while (l <= r) rSet.add(l++); });
     return interval.every(el => rSet.has(el));
 };
