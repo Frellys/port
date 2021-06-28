@@ -8,17 +8,16 @@
  * @return {string}
  */
 var removeDuplicates = function (S) {
-    let arr = S.split('');
+    S = S.split('');
     while (true) {
         let containsDuplicates = false;
-        for (let i = 0; i < arr.length - 1; i++) {
-            if (arr[i] == arr[i + 1]) {
+        for (let i = 0; i < S.length - 1; i++) {
+            if (S[i] === S[i + 1]) {
                 containsDuplicates = true;
-                arr.splice(i, 2);
-                break;
+                S.splice(i, 2);
             }
         }
         if (!containsDuplicates) break;
     }
-    return arr.join('');
+    return S.join('');
 };
