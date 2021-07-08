@@ -8,22 +8,23 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-    if (s.length % 2 != 0) return false;
-    let opened = [];
-    let closed = [];
+    let arr = [];
+    let pars = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
     let flag = true;
-    s.split('').forEach(function (p) {
-        if (flag) {
-            if (p == '(' || p == '{' || p == '[') {
-                opened.push(p);
-            }
-            else {
-                closed.push(p);
-                let tmp = opened.pop() + closed.shift();
-                flag = (tmp == '()' || tmp == '{}' || tmp == '[]');
+    for (let p of s) {
+        if (p in pars) {
+            arr.push(p);
+        }
+        else {
+            if (p != pars[arr.pop()]) {
+                flag = false;
+                break;
             }
         }
-    });
-    if (opened.length) flag = false;
-    return flag;
+    }
+    return !arr.length && flag;
 };
