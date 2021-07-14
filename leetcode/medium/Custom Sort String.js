@@ -5,21 +5,22 @@
 // Return any permutation of T(as a string) that satisfies this property.
 
 /**
- * @param {string} S
- * @param {string} T
+ * @param {string} order
+ * @param {string} str
  * @return {string}
  */
-var customSortString = function (S, T) {
-    let order = Array.from(new Set(S.split('')));
+var customSortString = function (order, str) {
+    let arr = str.split('');
+    let len = str.length;
     let ret = '';
-    let arr = T.split('');
-    order.forEach(function (ch) {
-        let cnt = arr.filter(function (el) { return el == ch; }).length;
-        while (cnt) {
+    let diff = 0;
+    for (let ch of order) {
+        diff = len - (arr = arr.filter(el => el !== ch)).length;
+        len -= diff;
+        while (diff) {
             ret += ch;
-            cnt--;
+            diff--;
         }
-    });
-    ret += arr.filter(function (el) { return order.includes(el) == false; }).join('');
-    return ret;
+    }
+    return (ret + arr.join(''));
 };
