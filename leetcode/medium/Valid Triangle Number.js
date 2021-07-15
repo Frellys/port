@@ -6,15 +6,12 @@
  */
 var triangleNumber = function (nums) {
     let ret = 0;
-    for (let i = 0; i < nums.length - 2; i++) {
-        for (let j = i + 1; j < nums.length - 1; j++) {
-            for (let k = j + 1; k < nums.length; k++) {
-                if (nums[i] != 0 && nums[j] != 0 && nums[k] != 0) {
-                    if (nums[i] + nums[j] > nums[k] &&
-                        nums[j] + nums[k] > nums[i] &&
-                        nums[k] + nums[i] > nums[j]) {
-                        ret++;
-                    }
+    let len = nums.length;
+    for (let i = 0; i < len - 2; i++) {
+        if (nums[i]) for (let j = i + 1; j < len - 1; j++) {
+            if (nums[j]) for (let k = j + 1, fSum = nums[i] + nums[j]; k < len; k++) {
+                if (nums[k] && nums[k] < fSum) {
+                    ret += (nums[j] + nums[k] > nums[i] && nums[k] + nums[i] > nums[j]);
                 }
             }
         }
