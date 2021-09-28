@@ -7,11 +7,11 @@
  * @return {number[]}
  */
 var sortArrayByParityII = function (A) {
-    let odd = A.filter(function (el) { return el % 2 != 0; });
-    let even = A.filter(function (el) { return el % 2 == 0; });
+    let odd = [];
+    let even = [];
+    A.forEach(el => ((el % 2) ? odd : even).push(el));
     let ret = [];
-    for (let i = 0; i < A.length; i++) {
-        ret.push((i % 2 == 0) ? even.shift() : odd.shift());
-    }
+    let flag = true;
+    A.forEach(() => ret.push(((flag = !flag) ? odd : even).pop()));
     return ret;
 };
