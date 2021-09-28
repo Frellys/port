@@ -19,9 +19,6 @@
 var numUniqueEmails = function (emails) {
     return new Set(emails.map(function (el) {
         let [name, domain] = el.split('@');
-        if (name.includes('+')) {
-            name = name.split('+')[0];
-        }
-        return name.replace(/\./g, '') + '@' + domain;
+        return name.split('+')[0].replace(/\./g, '') + '@' + domain;
     })).size;
 };
