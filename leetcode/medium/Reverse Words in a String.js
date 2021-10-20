@@ -7,5 +7,5 @@
  * @return {string}
  */
 var reverseWords = function (s) {
-    return s.split(' ').filter((el) => { return el != ''; }).reverse().join(' ');
+    return s.split(' ').filter(el => el.length).reverse().join(' ');
 };
