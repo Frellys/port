@@ -8,8 +8,14 @@
  */
 var findDisappearedNumbers = function (nums) {
     let ret = [];
-    for (let i = 1; i <= nums.length; i++) {
-        if (!nums.includes(i)) ret.push(i);
+    let set = new Set(nums);
+    let len = nums.length;
+    let delta = len - set.size;
+    let cur = 0;
+    while (cur < len && ret.length < delta) {
+        if (!set.has(++cur)) {
+            ret.push(cur);
+        }
     }
     return ret;
 };
