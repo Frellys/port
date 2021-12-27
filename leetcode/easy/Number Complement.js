@@ -6,9 +6,5 @@
  * @return {number}
  */
 var findComplement = function (num) {
-    let bin = (num >>> 0).toString(2).split('');
-    for (let i = 0; i < bin.length; i++) {
-        bin[i] = (bin[i] == '0') ? '1' : '0';
-    }
-    return parseInt(bin.join(''), 2);
+    return parseInt((num >>> 0).toString(2).split('').map(n => +(n == '0')).join(''), 2);
 };
