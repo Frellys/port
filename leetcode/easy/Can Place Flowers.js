@@ -10,8 +10,8 @@
  */
 var canPlaceFlowers = function (flowerbed, n) {
     for (let i = 0; i < flowerbed.length; i++) {
-        if (n != 0) {
-            if (flowerbed[i] == 0) {
+        if (n) {
+            if (!flowerbed[i]) {
                 if (!flowerbed[i - 1] && !flowerbed[i + 1]) {
                     flowerbed[i] = 1;
                     n--;
@@ -23,5 +23,5 @@ var canPlaceFlowers = function (flowerbed, n) {
             break;
         }
     }
-    return (n == 0) ? true : false;
+    return !n;
 };
