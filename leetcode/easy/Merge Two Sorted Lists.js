@@ -14,24 +14,20 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (l1, l2) {
-    if (!l1 && !l2) return null;
-    let arr = [];
-    while (l1) {
-        arr.push(l1.val);
-        l1 = l1.next;
-    }
-    while (l2) {
-        arr.push(l2.val);
-        l2 = l2.next;
-    }
-    arr.sort(function (a, b) { return a - b; });
-    let ret = new ListNode();
-    ret.val = arr.pop();
-    while (arr.length != 0) {
-        let cur = new ListNode();
-        cur.val = arr.pop();
-        cur.next = ret;
-        ret = cur;
+    let ret = null;
+    if (l1 || l2) {
+        let arr = [];
+        Array.from(arguments).forEach(l => {
+            while (l) {
+                arr.push(l.val);
+                l = l.next;
+            }
+        });
+        arr.sort((a, b) => a - b);
+        ret = new ListNode(arr.pop());
+        while (arr.length) {
+            ret = new ListNode(arr.pop(), ret);
+        }
     }
     return ret;
 };
