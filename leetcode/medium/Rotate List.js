@@ -14,19 +14,13 @@
  */
 var rotateRight = function (head, k) {
     let ret;
-    if (ret = head) {
-        let vals = [head.val];
+    if (head) {
+        let arr = [head.val];
         while (head = head.next) {
-            vals.push(head.val);
+            arr.push(head.val);
         }
-        k = k % vals.length;
-        while (k--) {
-            vals.unshift(vals.pop());
-        }
-        ret = new ListNode(vals.pop(), undefined);
-        while (vals.length) {
-            ret = new ListNode(vals.pop(), ret);
-        }
+        k %= arr.length;
+        arr.splice(-k, k).concat(arr).reverse().forEach(v => ret = new ListNode(v, ret));
     }
-    return ret;
+    return ret || head;
 };
