@@ -14,16 +14,13 @@
  */
 var rightSideView = function (root) {
     let ret = [];
-    let level = -1;
-    function traverse(node) {
+    function traverse(node, level) {
         if (node) {
-            level++;
-            ret[level] = node.val;
-            traverse(node.left);
-            traverse(node.right);
-            level--;
+            ret[level++] = node.val;
+            traverse(node.left, level);
+            traverse(node.right, level);
         }
     }
-    traverse(root);
+    traverse(root, 0);
     return ret;
 };
