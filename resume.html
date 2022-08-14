@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>resume</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html {
-            overflow-x: hidden;
             overflow-y: auto;
             font-family: monospace;
             color: #323232;
@@ -16,240 +16,187 @@
             margin: 0;
             padding: 0;
             background-color: whitesmoke;
-            display: table-cell;
-            width: 100vw;
-            height: 100vh;
-            vertical-align: middle;
         }
 
         #content {
             width: 100vmin;
-            height: 100vh;
             margin: 0 auto;
         }
 
-            #content div.label {
-                display: flex;
-                flex-direction: row;
-            }
+        .label {
+            display: flex;
+            flex-direction: row;
+        }
 
-                #content div.label span {
-                    font-weight: bold;
-                    font-size: 1.5em;
-                }
+        .label span {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
 
-                #content div.label hr {
-                    height: 0.5em;
-                    border: none;
-                    border-bottom: 1px solid #323232;
-                    width: 100%;
-                    margin-left: 2em;
-                }
+        .label hr {
+            height: .5rem;
+            border: none;
+            border-bottom: 1px solid #323232;
+            width: 100%;
+            margin-left: 2rem;
+        }
 
-            #content header {
-                font-size: 3.5em;
-                font-weight: bold;
-                padding: 0.25em;
-            }
+        header {
+            font-size: 3.5rem;
+            font-weight: bold;
+            padding: 1rem 0;
+        }
 
-            #content #occupation {
-                padding: 1em;
-            }
+        img {
+            width: 100%;
+            border-radius: 50%;
+        }
 
-            #content #occupation {
-                padding: 1em;
-            }
+        .block .cnt {
+            padding: 1rem 0 1rem 1rem;
+        }
 
-                #content #occupation img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
+        .block .cnt .row {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.1rem;
+        }
 
-                #content #occupation table {
-                    padding: 1em;
-                }
+        .block .cnt .row div {
+            flex-wrap: wrap;
+            padding: .3rem 1rem;
+        }
 
-                    #content #occupation table tr td:first-child {
-                        width: 15%;
-                        font-size: 1.1em;
-                    }
+        .block .cnt .row div:first-child {
+            flex: 0 0 auto;
+            width: 13ch;
+            font-weight: bold;
+        }
 
-                    #content #occupation table td {
-                        vertical-align: top;
-                        padding: 0.25em 1em;
-                        font-size: 1.25em;
-                    }
-
-                        #content #occupation table td span {
-                            font-weight: bold;
-                        }
-
-            #content #work-experience {
-                padding: 1em;
-            }
-
-                #content #work-experience table {
-                    padding: 1em;
-                }
-
-                    #content #work-experience table tr td:first-child {
-                        width: 15%;
-                    }
-
-                    #content #work-experience table td {
-                        vertical-align: top;
-                        padding: 0.25em 1em;
-                        font-size: 1.1em;
-                    }
-
-                        #content #work-experience table td span {
-                            font-weight: bold;
-                        }
-
-            #content #education {
-                padding: 1em;
-            }
-
-                #content #education table {
-                    padding: 1em;
-                }
-
-                    #content #education table tr td:first-child {
-                        width: 15%;
-                    }
-
-                    #content #education table td {
-                        vertical-align: top;
-                        padding: 0.25em 1em;
-                        font-size: 1.1em;
-                    }
-
-                        #content #education table td span {
-                            font-weight: bold;
-                        }
-
-            #content #contacts {
-                padding: 1em;
-            }
-
-                #content #contacts #contacts-content {
-                    font-size: 1.25em;
-                    padding: 1em;
-                }
-
-                    #content #contacts #contacts-content span {
-                        font-weight: bold;
-                    }
+        .block .cnt .row div:last-child {
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
+
 <body>
     <div id="content">
         <header>Samuylov Artem Sergeevich</header>
-        <div id="occupation">
+        <div class="block">
             <div class="label">
                 <span>programmer</span>
                 <hr>
             </div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><img src="resume-photo.JPG"></td>
-                        <td>
-                            C# (ASP.NET) - junior<br>
-                            JavaScript (ES6) - middle<br>
-                            HTML5, CSS3 - middle<br>
-                            (MS/PG)SQL - junior<br>
-                            <br>
-                            languages:<br>
-                            - russian - native<br>
-                            - english - upper-intermediate
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cnt">
+                <div class="row">
+                    <div>
+                        <img src="resume-photo.JPG">
+                    </div>
+                    <div>
+                        <span>C# (ASP.NET) - <b>junior</b></span>
+                        <span>JavaScript (ES6) - <b>middle</b></span>
+                        <span>HTML5, CSS3 - <b>middle</b></span>
+                        <span>(MS/PG)SQL - <b>junior</b></span>
+                        <br>
+                        <span>developed online maps, using <b>OpenLayers.js</b></span>
+                        <span>several projects written with <b>node.js</b>, <b>nw.js</b></span>
+                        <span>familiar with <b>React</b>, <b>Material</b>, <b>UDML</b></span>
+                        <span>prefer <b>json</b> to <b>xml</b></span>
+                        <br>
+                        <span>languages:</span>
+                        <span>- russian - native</span>
+                        <span>- english - upper-intermediate</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="work-experience">
+        <div class="block">
             <div class="label">
                 <span>work&nbsp;experience</span>
                 <hr>
             </div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <span>2019</span>
-                        </td>
-                        <td>
-                            Ministry of Information Technologies, Communications and Digital Development of Chelyabinsk Region<br>
-                            Department of Technical Development<br>
-                            <span>chief specialist</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>2019-</span>
-                        </td>
-                        <td>
-                            Regional state budgetary institution "Chelyabinsk Regional Center for Navigation and Information Technologies"<br>
-                            Department of Geographic Information and Navigation Systems<br>
-                            <span>programmer</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cnt">
+                <div class="row">
+                    <div>2019</div>
+                    <div>
+                        <span>Ministry of Information Technologies, Communications and Digital Development of Chelyabinsk Region</span>
+                        <span>Department of Technical Development</span>
+                        <span><b>chief specialist</b></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>2019 - 2022</div>
+                    <div>
+                        <span>Regional state budgetary institution "Chelyabinsk Regional Center for Navigation and Information Technologies"</span>
+                        <span>Department of Geographic Information and Navigation Systems</span>
+                        <span><b>programmer</b></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>2022 - now</div>
+                    <div>
+                        <span>Digital Faces LLC</span>
+                        <span><b>programmer-analyst</b></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="education">
+        <div class="block">
             <div class="label">
                 <span>education</span>
                 <hr>
             </div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <span>2013-2017</span>
-                        </td>
-                        <td>
-                            South Ural State University (National Research University), Chelyabinsk<br>
-                            Information and analytical support for management in social and economic systems<br>
-                            <span>bachelor's degree</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>2017-2019</span>
-                        </td>
-                        <td>
-                            South Ural State University (National Research University), Chelyabinsk<br>
-                            Faculty of Mathematics, Mechanics and Computer Technology, Software Engineering (Security and Protection of Software Systems)<br>
-                            <span>master's degree</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>2019-</span>
-                        </td>
-                        <td>
-                            South Ural State University (National Research University), Chelyabinsk<br>
-                            Information security, Methods and systems of information security (information security)<br>
-                            <span>PhD</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cnt">
+                <div class="row">
+                    <div>2013 - 2017</div>
+                    <div>
+                        <span>South Ural State University</span>
+                        <span>Information and analytical support for management in social and economic systems</span>
+                        <span><b>bachelor's degree</b></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>2017 - 2019</div>
+                    <div>
+                        <span>South Ural State University</span>
+                        <span>Faculty of Mathematics, Mechanics and Computer Technology, Software Engineering (Security and Protection of Software Systems)</span>
+                        <span><b>master's degree</b></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>2019 - 2022</div>
+                    <div>
+                        <span>South Ural State University</span>
+                        <span>Information security, Methods and systems of information security (information security)</span>
+                        <span><b>PhD (unfinished)</b></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="contacts">
+        <div class="block" id="contacts">
             <div class="label">
                 <span>contacts</span>
                 <hr>
             </div>
-            <div id="contacts-content">
-                <span>ADDRESS&nbsp;</span> Chelyabinsk, Chelyabinsk region, Russia<br>
-                <span>TELEGRAM</span><a href="http://t.me/frellys" target="_blank" style="display:inline-block; margin: 0.5em;">@frellys</a>
+            <div class="cnt">
+                <div class="row">
+                    <div>address</div>
+                    <div>
+                        <span>Chelyabinsk, Chelyabinsk region, Russia</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>telegram</div>
+                    <div>
+                        <span><a href="http://t.me/frellys" target="_blank" style="display:inline-block;">@frellys</a></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script>
     </script>
 </body>
+
 </html>
