@@ -12,13 +12,12 @@
  * @return {number}
  */
 var maximumUnits = function (boxTypes, truckSize) {
-    let ret = 0;
-    boxTypes.sort(function (a, b) { return (b[1] - a[1]); });
-    while (truckSize && boxTypes.length) {
-        ret += boxTypes[0][1];
-        boxTypes[0][0]--;
-        truckSize--;
-        if (boxTypes[0][0] == 0) boxTypes.shift();
-    }
-    return ret;
+    return boxTypes.sort((a, b) => b[1] - a[1]).reduce((acc, [boxes, units]) => {
+        while (truckSize && boxes) {
+            acc += units;
+            boxes--;
+            truckSize--;
+        }
+        return acc;
+    }, 0);
 };
