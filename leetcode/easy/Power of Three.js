@@ -5,11 +5,6 @@
  * @return {boolean}
  */
 var isPowerOfThree = function (n) {
-    let pow = 0;
-    while (true) {
-        let temp = Math.pow(3, pow);
-        if (temp == n) return true;
-        if (temp > n) return false;
-        if (temp < n) pow++;
-    }
+    let pow = Math.log10(n) / Math.log10(3);
+    return (n > 0) && !(pow - Math.floor(pow));
 };
