@@ -7,5 +7,5 @@
  * @return {boolean}
  */
 var arrayStringsAreEqual = function (word1, word2) {
-    return (word1.join('') == word2.join(''));
+    return new Set(Array.from(arguments).map(arr => arr.join(''))).size == 1;
 };
