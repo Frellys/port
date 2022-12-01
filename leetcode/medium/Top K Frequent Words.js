@@ -8,14 +8,14 @@
  * @return {string[]}
  */
 var topKFrequent = function (words, k) {
-    let freq = {};
-    words.forEach(function (word) {
-        freq[word] = (word in freq) ? freq[word] + 1 : 1;
-    });
+    let freq = words.reduce((acc, word) => {
+        acc[word] = (word in acc) ? acc[word] + 1 : 1;
+        return acc;
+    }, {});
     let max = Math.max.apply(null, Object.values(freq));
     let ret = [];
     while (ret.length < k) {
-        ret = ret.concat(Object.keys(freq).filter(function (key) { return freq[key] == max; }).sort());
+        ret = ret.concat(Object.keys(freq).filter((key) => freq[key] == max).sort());
         max--;
     }
     while (ret.length > k) ret.pop();
