@@ -21,7 +21,7 @@ var middleNode = function (head) {
         cur = cur.next;
         cnt++;
     }
-    cnt = ((cnt / 2 == 0) ? cnt + 1 : cnt) / 2;
+    cnt = (cnt + (cnt % 2)) / 2;
     while (cnt > 0) {
         ret = ret.next;
         cnt--;
