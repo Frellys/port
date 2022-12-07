@@ -5,10 +5,13 @@
  * @return {string}
  */
 var frequencySort = function (s) {
-    let freq = Object.fromEntries(Array.from(new Set(s.split(''))).map(c => [c, 0]));
-    for (let key of s) {
-        freq[key]++;
-    }
-    let keys = Object.keys(freq).sort(function (a, b) { return freq[b] - freq[a]; });
+    let freq = s.split('').reduce((acc, cur) => {
+        if (!(cur in acc)) {
+            acc[cur] = 0;
+        }
+        acc[cur]++;
+        return acc;
+    }, {});
+    let keys = Object.keys(freq).sort((a, b) => freq[b] - freq[a]);
     return keys.map(key => new Array(freq[key]).fill(key).join('')).join('');
 };
