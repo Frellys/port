@@ -16,12 +16,12 @@
 var partition = function (head, x) {
     let seen = [[], []];
     while (head) {
-        seen[+(head.val >= x)].push(new ListNode(head.val));
+        seen[+!(head.val < x)].push(new ListNode(head.val));
         head = head.next;
     }
     let ret = seen.flat();
-    ret.forEach((n, ndx) => {
-        n.next = ret[ndx + 1] || null;
-    });
+    for (let i = 0; i < ret.length - 1; i++) {
+        ret[i].next = ret[i + 1];
+    }
     return ret[0] || head;
 };
