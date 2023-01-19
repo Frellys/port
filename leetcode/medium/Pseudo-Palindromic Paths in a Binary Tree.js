@@ -15,30 +15,26 @@
  * @return {number}
  */
 var pseudoPalindromicPaths = function (root) {
-    let paths = [];
-    let cur = [];
-    function traverse(node) {
+    let seen = {};
+    let cnt = 0;
+    let traverse = function (node) {
         if (node) {
-            cur.push(node.val);
-            if (!node.left && !node.right) {
-                paths.push(cur.join(''));
+            if (!(node.val in seen)) {
+                seen[node.val] = 0;
             }
-            traverse(node.left);
-            traverse(node.right);
-            cur.pop();
+            seen[node.val]++;
+            if (!node.left && !node.right) {
+                if (Object.values(seen).map(v => v % 2).filter(v => v).length <= 1) {
+                    cnt++;
+                }
+            }
+            else {
+                traverse(node.left);
+                traverse(node.right);
+            }
+            seen[node.val]--;
         }
     };
     traverse(root);
-    let cnt = 0;
-    paths.forEach(function (path) {
-        let freq = {};
-        for (let key of path) {
-            freq[key] = (key in freq) ? freq[key] + 1 : 1;
-        }
-        let keys = Object.keys(freq);
-        if (keys.filter(function (key) { return (freq[key] == 1); }).length <= 1) {
-            if (keys.length - keys.filter(function (key) { return (freq[key] % 2 == 0); }).length <= 1) cnt++;
-        }
-    });
     return cnt;
 };
