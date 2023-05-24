@@ -8,17 +8,6 @@
  * @return {boolean[]}
  */
 var kidsWithCandies = function (candies, extraCandies) {
-    let ret = [];
-    candies.forEach(function (el) {
-        let temp = el + extraCandies;
-        let flag = true;
-        for (let i = 0; i < candies.length; i++) {
-            if (candies[i] > temp) {
-                flag = false;
-                break;
-            }
-        }
-        ret.push(flag);
-    });
-    return ret;
+    let max = Math.max.apply(null, candies);
+    return candies.map(el => el + extraCandies >= max);
 };
