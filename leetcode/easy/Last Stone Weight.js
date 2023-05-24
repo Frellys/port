@@ -12,14 +12,11 @@
  */
 var lastStoneWeight = function (stones) {
     while (stones.length > 1) {
-        stones.sort(function (a, b) {
-            return a - b;
-        });
-        let a = stones.pop();
-        let b = stones.pop();
+        stones.sort((a, b) => a - b);
+        let [a, b] = stones.splice(-2);
         if (a != b) {
-            stones.push(Math.abs(a - b));
+            stones.push(b - a);
         }
     }
-    return (stones.length == 0) ? 0 : stones[0];
+    return stones[0] || 0;
 };

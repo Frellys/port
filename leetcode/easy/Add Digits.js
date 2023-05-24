@@ -5,16 +5,9 @@
  * @return {number}
  */
 var addDigits = function (num) {
-    while (true) {
-        let res = 0;
-        num.toString().split('').forEach(function (el) {
-            res += parseInt(el);
-        });
-        if (res.toString().length == 1) {
-            return res;
-        }
-        else {
-            num = res;
-        }
+    let ret = num.toString();
+    while (ret.length > 1) {
+        ret = ret.split('').reduce((acc, cur) => acc + parseInt(cur), 0).toString();
     }
+    return ret;
 };
