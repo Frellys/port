@@ -10,16 +10,5 @@
  * @return {number}
  */
 var arraySign = function (nums) {
-    let ret = 0;
-    if (nums.includes(0) == false) {
-        let seen = {
-            'true': 0,
-            'false': 0
-        };
-        nums.forEach(function (el) {
-            seen[(el > 0).toString()]++;
-        });
-        ret = (seen['false'] % 2 == 1) ? -1 : 1;
-    }
-    return ret;
+    return nums.includes(0) ? 0 : ((nums.filter(n => n < 0).length % 2) ? -1 : 1);
 };

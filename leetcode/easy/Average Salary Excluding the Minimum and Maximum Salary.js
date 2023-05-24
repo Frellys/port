@@ -6,14 +6,7 @@
  * @return {number}
  */
 var average = function (salary) {
-    let max = salary[0];
-    let min = salary[0];
-    let sum = 0;
-    salary.forEach(function (el) {
-        if (max < el) max = el;
-        if (min > el) min = el;
-        sum += el;
-    });
-    sum = sum - max - min;
-    return (sum / (salary.length - 2));
+    let len = salary.length - 2;
+    let sum = salary.sort((a, b) => a - b).splice(1, len).reduce((acc, cur) => acc + cur, 0);
+    return sum / len;
 };
