@@ -19,7 +19,7 @@ var KthLargest = function (k, nums) {
  */
 KthLargest.prototype.add = function (val) {
     this.arr.push(val);
-    this.arr.sort(function (a, b) { return b - a; });
+    this.arr.sort((a, b) => b - a);
     return this.arr[this.pos];
 };
 
