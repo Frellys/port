@@ -2,13 +2,13 @@
 // Implement MyHashSet class:
 // - void add(key) Inserts the value key into the HashSet.
 // - bool contains(key) Returns whether the value key exists in the HashSet or not.
-// - void remove(key) Removes the value key in the HashSet.If key does not exist in the HashSet, do nothing.
+// - void remove(key) Removes the value key in the HashSet. If key does not exist in the HashSet, do nothing.
 
 /**
  * Initialize your data structure here.
  */
 var MyHashSet = function () {
-    this.array = [];
+    this.set = new Set();
 };
 
 /** 
@@ -16,9 +16,7 @@ var MyHashSet = function () {
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-    if (this.array.includes(key) == false) {
-        this.array.push(key);
-    }
+    this.set.add(key);
 };
 
 /** 
@@ -26,9 +24,7 @@ MyHashSet.prototype.add = function (key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function (key) {
-    if (this.array.includes(key)) {
-        this.array.splice(this.array.indexOf(key), 1);
-    }
+    this.set.delete(key);
 };
 
 /**
@@ -37,7 +33,7 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-    return this.array.includes(key);
+    return this.set.has(key);
 };
 
 /**

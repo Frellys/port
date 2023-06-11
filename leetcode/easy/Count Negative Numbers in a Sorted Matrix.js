@@ -6,11 +6,7 @@
  * @return {number}
  */
 var countNegatives = function (grid) {
-    let cnt = 0;
-    grid.forEach(function (row) {
-        row.forEach(function (cell) {
-            if (cell < 0) cnt++;
-        });
-    });
-    return cnt;
+    return grid.reduce((acc, row) => {
+        return acc + row.filter(cell => cell < 0).length;
+    }, 0);
 };
