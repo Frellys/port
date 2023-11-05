@@ -21,9 +21,8 @@ var getMinimumDifference = function (root) {
                 min = 0;
             }
             else {
-                arr.forEach(function (el) {
-                    let cur = Math.abs(el - node.val);
-                    if (min > cur) min = cur;
+                arr.forEach(el => {
+                    min = Math.min(min, Math.abs(el - node.val));
                 });
                 arr.push(node.val);
             }

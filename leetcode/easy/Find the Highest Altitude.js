@@ -9,11 +9,8 @@
  * @return {number}
  */
 var largestAltitude = function (gain) {
-    let ret = [0];
-    let cur = 0;
-    gain.forEach(function (el) {
-        cur += el;
-        ret.push(cur);
-    });
-    return Math.max.apply(null, ret);
+    return Math.max.apply(null, gain.reduce((acc, cur) => {
+        acc.arr.push(acc.val += cur);
+        return acc;
+    }, { arr: [0], val: 0 }).arr);
 };
